@@ -32,6 +32,8 @@ public class Main extends Application {
     static int countX = 0, countY = 0, countZ;
     public static int nodeCounter = 0;
     public String runOutput = "";
+    public static int runCounterDFS = 0;
+    public static int runCounterBFS = 0;
     Node node;
 
     @Override
@@ -65,23 +67,18 @@ public class Main extends Application {
 
         runButton.setOnAction(e -> {
             //What happens when run is clicked with DFS or BFS checked
-            outputResultsLabel.setText("");
+            outputResultsLabel.setWrapText(true);
             if (dfs.isSelected()) {
-                //resultsLabel.setText("");
-                String copy1 = graph.DFSHelper(nodeArray.get(0));
-                //outputResultsLabel.setText(graph.DFSHelper(nodeArray.get(0)));
-                //outputResultsLabel.setText(graph.printEdgesStr());
-                outputResultsLabel.setText(copy1);
-                graph.resetNodesVisited();
+                    String DFS = graph.DFSHelper(nodeArray.get(0));
+                    outputResultsLabel.setText(DFS);
+                    graph.resetNodesVisited();
+                    graph.s2 = "";
 
             } else {
-                //resultsLabel.setText("");
-                //outputResultsLabel.setText(graph.BFSHelper(nodeArray.get(0)));
-                //outputResultsLabel.setText(graph.printEdgesStr());
-                String copy2 = graph.BFSHelper(nodeArray.get(0));
-                outputResultsLabel.setText(copy2);
-                graph.resetNodesVisited();
-
+                    String BFS = graph.BFSHelper(nodeArray.get(0));
+                    outputResultsLabel.setText(BFS);
+                    graph.resetNodesVisited();
+                    graph.s1 = "";
             }
         });
 
@@ -105,7 +102,7 @@ public class Main extends Application {
         printEdgeButton.setOnAction(e -> {
             //print edges consists of printing edges and bfs or dfs
             String copy = graph.printEdgesStr();
-            outputResultsLabel.setText(copy + runOutput);
+            outputResultsLabel.setText("the output of printEdges :\n" + copy + runOutput);
 
         });
 
